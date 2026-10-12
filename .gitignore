@@ -1,0 +1,21 @@
+# Системные
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Редакторы
+.vscode/
+.idea/
+*.swp
+*~
+
+# Кэш / временные
+__pycache__/
+*.pyc
+*.log
+*.tmp
+.cache/
+
+# Бэкапы
+village_backup/
+*.bak
