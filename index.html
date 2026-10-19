@@ -501,6 +501,158 @@
     }
 
     /* =========================================================== */
+    /* НОВЫЙ БЛОК — Связь поколений                                  */
+    /* =========================================================== */
+    #generations {
+      height: 100vh;
+      min-height: 100vh;
+      height: 100svh;
+      min-height: 100svh;
+      /* Подняли контент на 30px за счет уменьшения верхнего отступа */
+      padding: calc(var(--header-h) + 1rem - 30px) 5% 1rem;
+      box-sizing: border-box;
+      justify-content: center;
+      background-color: #e0e0e0;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .gen-container {
+      width: 100%;
+      max-width: 90rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 0 auto;
+      height: 100%;
+      justify-content: center;
+    }
+
+    .gen-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: #111;
+      text-align: center;
+      margin-bottom: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Карусель */
+    .carousel-wrapper {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0.5rem 0;
+      scroll-behavior: smooth;
+      cursor: grab;
+    }
+    
+    .carousel-track:active {
+      cursor: grabbing;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-item {
+      flex: 0 0 auto;
+      width: 450px;
+      height: 300px;
+      scroll-snap-align: center;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      background-color: #fff;
+      user-select: none;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3rem;
+      height: 3rem;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      color: #333;
+      cursor: pointer;
+      z-index: 10;
+      transition: background-color 0.2s, color 0.2s;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .carousel-btn:hover {
+      background-color: #a02020;
+      color: #fff;
+      border-color: #a02020;
+    }
+
+    .carousel-btn.prev { left: -1.5rem; }
+    .carousel-btn.next { right: -1.5rem; }
+
+    /* Текстовый блок */
+    .gen-text-content {
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      border-left: 6px solid #a02020;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-top: 0;
+      flex: 1; /* Растягивается на всё свободное место */
+      min-height: 0; /* Важно для корректной работы overflow во флекс-контейнере */
+      overflow-y: auto;
+    }
+
+    .gen-badge {
+      display: inline-block;
+      background-color: #a02020;
+      color: #fff;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: 0 2px 8px rgba(160, 32, 32, 0.4);
+    }
+
+    .gen-text {
+      font-size: 0.85rem;
+      color: #222;
+      line-height: 1.5;
+      text-align: justify;
+      columns: 2;
+      column-gap: 2rem;
+    }
+
+    /* =========================================================== */
     /* ЧЕТВЁРТЫЙ БЛОК — ЛИТЕРАТУРА                                   */
     /* =========================================================== */
     #literature {
@@ -596,6 +748,8 @@
 
       .why-left { padding: 0.6rem 1.5rem 0.9rem; }
       .why-right { padding: 0.5rem 1rem 0.6rem; }
+      
+      .carousel-item { width: 350px; height: 250px; }
     }
 
     /* =========================================================== */
@@ -607,14 +761,8 @@
         --side-pad: 5%;
       }
 
-      /* Шапка и бургер */
-      .header {
-        justify-content: flex-end;
-        padding: 0 1.25rem;
-      }
-
+      .header { justify-content: flex-end; padding: 0 1.25rem; }
       .burger { display: flex; }
-
       .burger--open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
       .burger--open span:nth-child(2) { opacity: 0; }
       .burger--open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
@@ -643,177 +791,65 @@
       }
 
       .nav-list--open { transform: translateX(0); }
+      .nav-link { font-size: 1.25rem; letter-spacing: 0.08em; padding-bottom: 0.5rem; }
 
-      .nav-link {
-        font-size: 1.25rem;
-        letter-spacing: 0.08em;
-        padding-bottom: 0.5rem;
-      }
+      .hero-title { max-width: 100%; font-size: clamp(2rem, 10vw, 3.5rem); transform: none; text-align: left; }
 
-      /* Hero */
-      .hero-title {
-        max-width: 100%;
-        font-size: clamp(2rem, 10vw, 3.5rem);
-        transform: none;
-        text-align: left;
-      }
-
-      /* WHY — всё вертикально */
-      #why {
-        height: auto;
-        min-height: 100svh;
-      }
-
-      .why-layout {
-        flex-direction: column;
-        height: auto;
-      }
-
+      #why { height: auto; min-height: 100svh; }
+      .why-layout { flex-direction: column; height: auto; }
       .why-left {
-        width: 100%;
-        height: auto;
-        padding: 1.25rem 1rem 1.5rem;
-        justify-content: flex-start;
-        gap: 0.9rem;
-        border-right: none;
-        border-bottom: 2px solid rgba(160, 32, 32, 0.35);
+        width: 100%; height: auto; padding: 1.25rem 1rem 1.5rem;
+        justify-content: flex-start; gap: 0.9rem;
+        border-right: none; border-bottom: 2px solid rgba(160, 32, 32, 0.35);
         overflow-y: visible;
       }
+      .why-left-title { font-size: clamp(1.5rem, 6.5vw, 2rem); }
+      .why-lead { font-size: clamp(1rem, 4vw, 1.2rem); }
+      .why-text { font-size: 0.95rem; line-height: 1.6; text-align: left; }
+      .why-emphasis { font-size: 0.9rem; padding: 0.85rem 1rem; }
+      .why-tabliza { width: 100%; max-height: none; }
 
-      .why-left-title {
-        font-size: clamp(1.5rem, 6.5vw, 2rem);
-      }
+      .why-right { width: 100%; height: auto; padding: 1.5rem 1rem 2rem; gap: 1rem; }
+      .why-right-title { font-size: 1.6rem; margin-bottom: 0.5rem; }
+      .camps { gap: 2rem; }
+      .camp { flex: none; padding: 1rem 0 1.5rem; gap: 0.6rem; overflow: visible; }
+      .camp-name { font-size: 1.3rem; }
+      .camp-photos { flex: none; min-height: 0; overflow: visible; gap: 10px; flex-wrap: nowrap; }
+      .camp-photo { height: auto; flex: 1 1 0; min-width: 0; }
+      .camp-photo img { height: auto; width: 100%; max-height: 200px; object-fit: contain; }
+      .camp-photo--qr img { height: auto; max-height: 160px; }
+      .camp-count { font-size: 0.95rem; margin-top: 0.3rem; }
+      .camp-source { font-size: 0.75rem; }
 
-      .why-lead {
-        font-size: clamp(1rem, 4vw, 1.2rem);
-      }
+      #memory { height: auto; min-height: 100svh; }
+      .collage { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(6, 1fr); }
 
-      .why-text {
-        font-size: 0.95rem;
-        line-height: 1.6;
-        text-align: left;
-      }
-
-      .why-emphasis {
-        font-size: 0.9rem;
-        padding: 0.85rem 1rem;
-      }
-
-      .why-tabliza {
-        width: 100%;
-        max-height: none;
-      }
-
-      .why-right {
-        width: 100%;
+      /* Связь поколений мобилка */
+      #generations { 
         height: auto;
-        padding: 1.5rem 1rem 2rem;
-        gap: 1rem;
+        min-height: 100svh; 
+        padding: calc(var(--header-h) + 1rem) 1rem 2rem; 
       }
+      .gen-title { font-size: 2rem; }
+      .carousel-item { width: 280px; height: 200px; }
+      .carousel-btn { width: 2.5rem; height: 2.5rem; font-size: 1.2rem; }
+      .carousel-btn.prev { left: -0.5rem; }
+      .carousel-btn.next { right: -0.5rem; }
+      .gen-text-content { padding: 1.5rem; }
+      .gen-text { columns: 1; text-align: left; }
+      .gen-badge { font-size: 0.9rem; padding: 0.4rem 1rem; }
 
-      .why-right-title {
-        font-size: 1.6rem;
-        margin-bottom: 0.5rem;
-      }
-
-      .camps {
-        gap: 2rem;
-      }
-
-      .camp {
-        flex: none;
-        padding: 1rem 0 1.5rem;
-        gap: 0.6rem;
-        overflow: visible;
-      }
-
-      .camp-name {
-        font-size: 1.3rem;
-      }
-
-      .camp-photos {
-        flex: none;
-        min-height: 0;
-        overflow: visible;
-        gap: 10px;
-        flex-wrap: nowrap;
-      }
-
-      .camp-photo {
-        height: auto;
-        flex: 1 1 0;
-        min-width: 0;
-      }
-
-      .camp-photo img {
-        height: auto;
-        width: 100%;
-        max-height: 200px;
-        object-fit: contain;
-      }
-
-      .camp-photo--qr img {
-        height: auto;
-        max-height: 160px;
-      }
-
-      .camp-count {
-        font-size: 0.95rem;
-        margin-top: 0.3rem;
-      }
-
-      .camp-source {
-        font-size: 0.75rem;
-      }
-
-      /* Memory — 2 колонки */
-      #memory {
-        height: auto;
-        min-height: 100svh;
-      }
-
-      .collage {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(6, 1fr);
-      }
-
-      /* Literature */
-      #literature {
-        height: auto;
-        min-height: 100svh;
-      }
-
-      .lit-wrap {
-        padding: 1.25rem 1rem 2rem;
-        gap: 0.9rem;
-        overflow-y: visible;
-      }
-
-      .lit-title {
-        font-size: clamp(1.15rem, 4.5vw, 1.6rem);
-        line-height: 1.3;
-      }
-
-      .lit-list {
-        gap: 0.9rem;
-        padding-left: 0.5rem;
-      }
-
-      .lit-item {
-        font-size: 0.85rem;
-        line-height: 1.55;
-        padding-left: 0.9rem;
-      }
+      #literature { height: auto; min-height: 100svh; }
+      .lit-wrap { padding: 1.25rem 1rem 2rem; gap: 0.9rem; overflow-y: visible; }
+      .lit-title { font-size: clamp(1.15rem, 4.5vw, 1.6rem); line-height: 1.3; }
+      .lit-list { gap: 0.9rem; padding-left: 0.5rem; }
+      .lit-item { font-size: 0.85rem; line-height: 1.55; padding-left: 0.9rem; }
     }
 
     @media (max-width: 480px) {
       :root { --header-h: 3.5rem; }
-
       .nav-link { font-size: 1.05rem; letter-spacing: 0.06em; }
-
-      .hero-title {
-        font-size: clamp(1.75rem, 9vw, 2.75rem);
-      }
+      .hero-title { font-size: clamp(1.75rem, 9vw, 2.75rem); }
 
       .why-left-title { font-size: 1.5rem; }
       .why-lead { font-size: 1rem; }
@@ -825,6 +861,9 @@
       .camp-source { font-size: 0.7rem; }
       .camp-photo img { max-height: 160px; }
       .camp-photo--qr img { max-height: 130px; }
+
+      .carousel-item { width: 240px; height: 180px; }
+      .gen-text { font-size: 0.95rem; }
 
       .lit-item { font-size: 0.8rem; }
       .lit-title { font-size: 1.1rem; }
@@ -839,6 +878,7 @@
         <li><a href="#hero" class="nav-link">Главная</a></li>
         <li><a href="#why" class="nav-link">Геноцид</a></li>
         <li><a href="#memory" class="nav-link">Увековечивание</a></li>
+        <li><a href="#generations" class="nav-link">Связь поколений</a></li>
         <li><a href="#literature" class="nav-link">Литература</a></li>
       </ul>
     </nav>
@@ -858,15 +898,12 @@
 
   <section id="why" class="section">
     <div class="why-layout">
-
       <div class="why-left">
         <h2 class="why-left-title">Что такое геноцид</h2>
-
         <p class="why-lead">
           Геноцид — уничтожение определённых групп населения по расовым,
           национальным и религиозным признакам
         </p>
-
         <p class="why-text">
           За весь период немецко-фашистской оккупации Могилевского района,
           по неполным данным, немецко-фашистскими захватчиками уничтожено
@@ -874,7 +911,6 @@
           силой вывезено в немецкое рабство около 2643 человек советской
           молодёжи.
         </p>
-
         <p class="why-text">
           Методы уничтожения советских граждан, которые использовались
           немецко-фашистскими захватчиками, были разными, но в своём
@@ -882,83 +918,48 @@
           массовых расстрелов и сожжений — как живых людей, так и трупов —
           с целью сокрытия следов преступлений…
         </p>
-
         <div class="why-emphasis">
           За годы оккупации на временно захваченной территории БССР проведено
           более 140 только крупных карательных акций
         </div>
-
         <img class="why-tabliza" src="assets/tabliza2.png" alt="Таблица">
       </div>
 
       <div class="why-right">
         <h3 class="why-right-title">Это не забыть</h3>
-
         <div class="camps">
-
           <div class="camp">
             <h4 class="camp-name">Колдычевский лагерь смерти</h4>
             <div class="camp-photos">
-              <div class="camp-photo">
-                <img src="assets/лагеря/Колычевский лагерь смерти/14.1.jpg" alt="">
-              </div>
-              <div class="camp-photo">
-                <img src="assets/лагеря/Колычевский лагерь смерти/14.2.jpg" alt="">
-              </div>
-              <div class="camp-photo camp-photo--qr">
-                <img src="assets/лагеря/Колычевский лагерь смерти/qrcode.png" alt="QR-код">
-              </div>
+              <div class="camp-photo"><img src="assets/лагеря/Колычевский лагерь смерти/14.1.jpg" alt=""></div>
+              <div class="camp-photo"><img src="assets/лагеря/Колычевский лагерь смерти/14.2.jpg" alt=""></div>
+              <div class="camp-photo camp-photo--qr"><img src="assets/лагеря/Колычевский лагерь смерти/qrcode.png" alt="QR-код"></div>
             </div>
             <div class="camp-count">Уничтожено 22 000 человек</div>
-            <div class="camp-source">
-              Из материалов уголовного дела Генеральной Прокуратуры
-              Республики Беларусь
-            </div>
+            <div class="camp-source">Из материалов уголовного дела Генеральной Прокуратуры Республики Беларусь</div>
           </div>
-
           <div class="camp">
             <h4 class="camp-name">Шталаг</h4>
             <div class="camp-photos">
-              <div class="camp-photo">
-                <img src="assets/лагеря/Шталаг 352/22.1.jpg" alt="">
-              </div>
-              <div class="camp-photo">
-                <img src="assets/лагеря/Шталаг 352/22.2.jpg" alt="">
-              </div>
-              <div class="camp-photo">
-                <img src="assets/лагеря/Шталаг 352/22.3.jpg" alt="">
-              </div>
+              <div class="camp-photo"><img src="assets/лагеря/Шталаг 352/22.1.jpg" alt=""></div>
+              <div class="camp-photo"><img src="assets/лагеря/Шталаг 352/22.2.jpg" alt=""></div>
+              <div class="camp-photo"><img src="assets/лагеря/Шталаг 352/22.3.jpg" alt=""></div>
             </div>
             <div class="camp-count">Уничтожено 80 000 человек</div>
-            <div class="camp-source">
-              Из материалов уголовного дела Генеральной Прокуратуры
-              Республики Беларусь
-            </div>
+            <div class="camp-source">Из материалов уголовного дела Генеральной Прокуратуры Республики Беларусь</div>
           </div>
-
           <div class="camp">
             <h4 class="camp-name">Ола</h4>
             <div class="camp-photos">
-              <div class="camp-photo">
-                <img src="assets/лагеря/Ола/33.jpg" alt="">
-              </div>
-              <div class="camp-photo">
-                <img src="assets/лагеря/Ола/34.jpg" alt="">
-              </div>
-              <div class="camp-photo">
-                <img src="assets/лагеря/Ола/35.jpg" alt="">
-              </div>
+              <div class="camp-photo"><img src="assets/лагеря/Ола/33.jpg" alt=""></div>
+              <div class="camp-photo"><img src="assets/лагеря/Ола/34.jpg" alt=""></div>
+              <div class="camp-photo"><img src="assets/лагеря/Ола/35.jpg" alt=""></div>
             </div>
             <div class="camp-count">Уничтожено 1 758 человек (из них 950 детей)</div>
-            <div class="camp-source">
-              Из материалов уголовного дела Генеральной Прокуратуры
-              Республики Беларусь
-            </div>
+            <div class="camp-source">Из материалов уголовного дела Генеральной Прокуратуры Республики Беларусь</div>
           </div>
-
         </div>
       </div>
-
     </div>
   </section>
 
@@ -968,21 +969,43 @@
     </div>
   </section>
 
+  <!-- БЛОК: СВЯЗЬ ПОКОЛЕНИЙ -->
+  <section id="generations" class="section">
+    <div class="gen-container">
+      <h2 class="gen-title">Связь поколений</h2>
+      
+      <div class="carousel-wrapper">
+        <button class="carousel-btn prev" id="btnPrev" aria-label="Назад">&#10094;</button>
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Элементы карусели будут добавлены через JS -->
+        </div>
+        <button class="carousel-btn next" id="btnNext" aria-label="Вперед">&#10095;</button>
+      </div>
+
+      <div class="gen-text-content">
+        <div class="gen-badge">От Михалыча (без матов)</div>
+        <div class="gen-text">
+          <p>Здесь будет размещён большой текст. Вы можете написать сюда историю о поиске захоронений, о том, как молодое поколение ухаживает за памятниками, очерк о ветеранах или любые другие размышления на тему памяти, патриотизма и связи между поколениями.</p>
+          <br>
+          <p>Текст автоматически разбивается на две колонки на широких экранах для удобства чтения. На мобильных устройствах он будет отображаться в одну колонку.</p>
+          <br>
+          <p>Просто замените этот текст на свой собственный, когда он будет готов.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="literature" class="section">
     <div class="lit-wrap">
-
       <h2 class="lit-title">
         При работе над учебно-исследовательским проектом
         были использованы следующие источники:
       </h2>
-
       <ul class="lit-list">
-
         <li class="lit-item">
           Памяць: Магілёўс. р-н: Гіст.-дак. хронікі гарадоў і р-наў Беларусі /
           Укл. У.Ф. Агурцоў, М.П. Хобатоў. — Мн.: Полымя, 1996. — 66 с.: іл.
         </li>
-
         <li class="lit-item">
           Без срока давности. Беларусь: преступления нацистов и их пособников
           против мирного населения на оккупированной территории БССР в годы
@@ -991,16 +1014,13 @@
           [и др.] — Минск : НАРБ; М.: Фонд «Историческая память», 2021. —
           520 с.: илл.
         </li>
-
         <li class="lit-item">
           Трагедия белорусских деревень 1941 – 144. Документы и материалы.
           Минск – Москва, 2012.
         </li>
-
         <li class="lit-item">
           Хатынские Деревья жизни. Документы и материалы. Минск : НАРБ, 2015.
         </li>
-
         <li class="lit-item">
           Великая Отечественная война советского народа (в контексте Второй
           мировой войны): Учеб. пособие для 11-го кл. учреждений, обеспечивающих
@@ -1009,62 +1029,32 @@
           Под ред. А.А. Ковалени, Н.С. Сташкевича; пер. с бел. яз. А.В. Скорохода.
           — Мн.: Изд. Центр БГУ, 2004. — 231 с.: ил., карт.
         </li>
-
         <li class="lit-item">
           Геноцид белорусского народа в годы Великой Отечественной войны:
           Учеб. пособие. — Мн.: РУП «Адукацыя і выхаванне», 2024. — 58 с.: ил.
         </li>
-
         <li class="lit-item">
-          <a href="https://sp.sb.by/belevichi" target="_blank" rel="noopener">
-            https://sp.sb.by/belevichi
-          </a>
+          <a href="https://sp.sb.by/belevichi" target="_blank" rel="noopener">https://sp.sb.by/belevichi</a>
         </li>
-
         <li class="lit-item">
-          <a href="https://www.sb.by/articles/vspomnit-vsekh-poimenno2.html?amp=1"
-             target="_blank" rel="noopener">
-            https://www.sb.by/articles/vspomnit-vsekh-poimenno2.html?amp=1
-          </a>
+          <a href="https://www.sb.by/articles/vspomnit-vsekh-poimenno2.html?amp=1" target="_blank" rel="noopener">https://www.sb.by/articles/vspomnit-vsekh-poimenno2.html?amp=1</a>
         </li>
-
         <li class="lit-item">
-          <a href="https://mogilev.mogilev-region.by/ru/semukachskij-selsovet/"
-             target="_blank" rel="noopener">
-            https://mogilev.mogilev-region.by/ru/semukachskij-selsovet/
-          </a>
+          <a href="https://mogilev.mogilev-region.by/ru/semukachskij-selsovet/" target="_blank" rel="noopener">https://mogilev.mogilev-region.by/ru/semukachskij-selsovet/</a>
         </li>
-
         <li class="lit-item">
-          <a href="https://mogilev.mogilev-region.by/ru/vendorozhskij-selsovet/"
-             target="_blank" rel="noopener">
-            https://mogilev.mogilev-region.by/ru/vendorozhskij-selsovet/
-          </a>
+          <a href="https://mogilev.mogilev-region.by/ru/vendorozhskij-selsovet/" target="_blank" rel="noopener">https://mogilev.mogilev-region.by/ru/vendorozhskij-selsovet/</a>
         </li>
-
         <li class="lit-item">
-          <a href="https://mogilev.mogilev-region.by/ru/dashkovskij-selsovet/"
-             target="_blank" rel="noopener">
-            https://mogilev.mogilev-region.by/ru/dashkovskij-selsovet/
-          </a>
+          <a href="https://mogilev.mogilev-region.by/ru/dashkovskij-selsovet/" target="_blank" rel="noopener">https://mogilev.mogilev-region.by/ru/dashkovskij-selsovet/</a>
         </li>
-
         <li class="lit-item">
-          <a href="https://mogilev.mogilev-region.by/ru/zavodskoslobodskij-selsovet/"
-             target="_blank" rel="noopener">
-            https://mogilev.mogilev-region.by/ru/zavodskoslobodskij-selsovet/
-          </a>
+          <a href="https://mogilev.mogilev-region.by/ru/zavodskoslobodskij-selsovet/" target="_blank" rel="noopener">https://mogilev.mogilev-region.by/ru/zavodskoslobodskij-selsovet/</a>
         </li>
-
         <li class="lit-item">
-          <a href="https://prokuratura.gov.by/ru/activity/rassledovanie-ugolovnogo-dela-o-genotside/"
-             target="_blank" rel="noopener">
-            Расследование уголовного дела о геноциде
-          </a>
+          <a href="https://prokuratura.gov.by/ru/activity/rassledovanie-ugolovnogo-dela-o-genotside/" target="_blank" rel="noopener">Расследование уголовного дела о геноциде</a>
         </li>
-
       </ul>
-
     </div>
   </section>
 
@@ -1143,11 +1133,79 @@
           village.alt = villages[i].title;
           link.appendChild(village);
         }
-
         collage.appendChild(link);
         i++;
       }
     }
+
+    /* ---------- Бесконечная карусель Связь поколений ---------- */
+    const carouselTrack = document.getElementById('carouselTrack');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+
+    // Список картинок от 1.jpg до 8.jpg в папке assets/карусель
+    const carouselImages = [];
+    for (let i = 1; i <= 8; i++) {
+      carouselImages.push(`assets/карусель/${i}.jpg`);
+    }
+
+    function createCarouselItem(src) {
+      const div = document.createElement('div');
+      div.className = 'carousel-item';
+      const img = document.createElement('img');
+      img.src = encodeURI(src); // encodeURI для русской папки
+      img.alt = 'Связь поколений';
+      div.appendChild(img);
+      return div;
+    }
+
+    // Клонируем картинки 3 раза для эффекта бесконечности
+    const duplicatedImages = [...carouselImages, ...carouselImages, ...carouselImages];
+
+    duplicatedImages.forEach(src => {
+      carouselTrack.appendChild(createCarouselItem(src));
+    });
+
+    // Скролл по стрелкам
+    const scrollAmount = 466; 
+
+    btnPrev.addEventListener('click', () => {
+      carouselTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    btnNext.addEventListener('click', () => {
+      carouselTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    // Drag-and-drop для мышки
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    carouselTrack.addEventListener('mousedown', (e) => {
+      isDown = true;
+      carouselTrack.style.cursor = 'grabbing';
+      startX = e.pageX - carouselTrack.offsetLeft;
+      scrollLeft = carouselTrack.scrollLeft;
+    });
+    
+    carouselTrack.addEventListener('mouseleave', () => {
+      isDown = false;
+      carouselTrack.style.cursor = 'grab';
+    });
+    
+    carouselTrack.addEventListener('mouseup', () => {
+      isDown = false;
+      carouselTrack.style.cursor = 'grab';
+    });
+    
+    carouselTrack.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carouselTrack.offsetLeft;
+      const walk = (x - startX) * 2;
+      carouselTrack.scrollLeft = scrollLeft - walk;
+    });
 
     /* ---------- Навигация по Enter ---------- */
     const sections = document.querySelectorAll('section');
