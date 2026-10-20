@@ -143,6 +143,7 @@
       align-items: flex-start;
     }
 
+    /* Внесено ваше изменение */
     .hero-title {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
@@ -233,14 +234,15 @@
       flex-direction: row;
     }
 
+    /* Левая колонка адаптируется под высоту и ширину экрана */
     .why-left {
       width: 55vw;
       height: 100%;
-      padding: 0.9rem 2.25rem 1rem;
+      padding: 2vh 2.5vw;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      gap: 0.6rem;
+      justify-content: space-between;
+      gap: 1.5vh;
       overflow-y: auto;
       background-color: rgba(255, 255, 255, 0.72);
       backdrop-filter: blur(4px);
@@ -250,7 +252,7 @@
 
     .why-left-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem, 2.4vw, 2.6rem);
+      font-size: clamp(2rem, 3vw, 3.5rem);
       font-weight: 700;
       color: #111111;
       line-height: 1.15;
@@ -260,7 +262,7 @@
 
     .why-lead {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1rem, 1.2vw, 1.3rem);
+      font-size: clamp(1.1rem, 1.5vw, 1.7rem);
       font-weight: 700;
       color: #a02020;
       line-height: 1.3;
@@ -269,18 +271,18 @@
     }
 
     .why-text {
-      font-size: clamp(0.85rem, 0.95vw, 1rem);
+      font-size: clamp(0.9rem, 1.1vw, 1.25rem);
       color: #2a2a2a;
-      line-height: 1.55;
+      line-height: 1.6;
       text-align: justify;
     }
 
     .why-emphasis {
       margin-top: 0.3rem;
-      padding: 0.75rem 0.95rem;
+      padding: 1.5vh 1.5vw;
       border-left: 4px solid #a02020;
       background-color: rgba(160, 32, 32, 0.1);
-      font-size: clamp(0.85rem, 0.95vw, 1rem);
+      font-size: clamp(0.9rem, 1.1vw, 1.25rem);
       font-weight: 700;
       color: #6b0f0f;
       letter-spacing: 0.03em;
@@ -289,10 +291,10 @@
     }
 
     .why-tabliza {
-      margin-top: 0.4rem;
+      margin-top: 1vh;
       width: 100%;
-      height: auto;
-      max-height: none;
+      max-height: 35vh; /* Ограничиваем высоту, чтобы текст не задавливался */
+      object-fit: contain;
       display: block;
       border: none;
       background: none;
@@ -304,7 +306,7 @@
     .why-right {
       flex: 1;
       height: 100%;
-      padding: 0.75rem 1.5rem 0.75rem;
+      padding: 1.5vh 1.5vw;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
@@ -501,7 +503,7 @@
     }
 
     /* =========================================================== */
-    /* НОВЫЙ БЛОК — Поисковая группа                                */
+    /* ЧЕТВЁРТЫЙ БЛОК — Поисковая группа                            */
     /* =========================================================== */
     #generations {
       height: 100vh;
@@ -615,10 +617,10 @@
     .carousel-btn.prev { left: -1.5rem; }
     .carousel-btn.next { right: -1.5rem; }
 
-    /* Текстовый блок */
+    /* Текстовый блок адаптируется по шрифтам */
     .gen-text-content {
       background-color: rgba(255, 255, 255, 0.7);
-      padding: 1.25rem 1.5rem;
+      padding: clamp(1rem, 2vw, 2.5rem);
       border-radius: 8px;
       border-left: 6px solid #a02020;
       box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -635,7 +637,7 @@
       padding: 0.3rem 0.8rem;
       border-radius: 20px;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: clamp(0.9rem, 1vw, 1.1rem);
       margin-bottom: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -643,39 +645,40 @@
     }
 
     .gen-text {
-      font-size: 0.85rem;
+      font-size: clamp(0.9rem, 1.1vw, 1.2rem);
       color: #222;
-      line-height: 1.5;
+      line-height: 1.6;
       text-align: justify;
       columns: 2;
-      column-gap: 2rem;
+      column-gap: 2.5rem;
     }
 
     /* Стилизация текста внутри нового блока */
     .gen-text p {
-      margin-bottom: 0.6rem;
+      margin-bottom: 1vh;
     }
     
     .gen-text strong {
       color: #a02020;
       font-weight: 700;
       display: block;
-      margin-top: 0.5rem;
-      margin-bottom: 0.2rem;
+      margin-top: 1.5vh;
+      margin-bottom: 0.5vh;
+      font-size: clamp(1rem, 1.2vw, 1.3rem);
     }
 
     .gen-text ul {
       margin-left: 1.2rem;
-      margin-bottom: 0.6rem;
+      margin-bottom: 1vh;
       padding-left: 0;
     }
 
     .gen-text li {
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.5vh;
     }
 
     /* =========================================================== */
-    /* ЧЕТВЁРТЫЙ БЛОК — ЛИТЕРАТУРА                                   */
+    /* ПЯТЫЙ БЛОК — ЛИТЕРАТУРА                                       */
     /* =========================================================== */
     #literature {
       padding: 0;
@@ -761,15 +764,10 @@
     /* ---------- Большие мониторы ---------- */
     @media (min-width: 1600px) {
       :root { --side-pad: 12%; }
-      .hero-title { max-width: 70%; }
     }
 
     @media (max-width: 1024px) {
       :root { --side-pad: 8%; }
-      .hero-title { max-width: 90%; }
-
-      .why-left { padding: 0.6rem 1.5rem 0.9rem; }
-      .why-right { padding: 0.5rem 1rem 0.6rem; }
       
       .carousel-item { width: 350px; height: 250px; }
     }
@@ -815,7 +813,8 @@
       .nav-list--open { transform: translateX(0); }
       .nav-link { font-size: 1.25rem; letter-spacing: 0.08em; padding-bottom: 0.5rem; }
 
-      .hero-title { max-width: 100%; font-size: clamp(2rem, 10vw, 3.5rem); transform: none; text-align: left; }
+      /* Возвращаем адекватные размеры для мобилки */
+      .hero-title { min-width: auto; max-width: 100%; font-size: clamp(2rem, 10vw, 3.5rem); transform: none; text-align: left; }
 
       #why { height: auto; min-height: 100svh; }
       .why-layout { flex-direction: column; height: auto; }
@@ -858,7 +857,8 @@
       .carousel-btn.prev { left: -0.5rem; }
       .carousel-btn.next { right: -0.5rem; }
       .gen-text-content { padding: 1.5rem; }
-      .gen-text { columns: 1; text-align: left; }
+      .gen-text { columns: 1; text-align: left; font-size: 0.95rem; }
+      .gen-text strong { font-size: 1rem; }
       .gen-badge { font-size: 0.85rem; padding: 0.4rem 1rem; }
 
       #literature { height: auto; min-height: 100svh; }
@@ -886,7 +886,6 @@
 
       .carousel-item { width: 240px; height: 180px; }
       .gen-title { font-size: 1.5rem; }
-      .gen-text { font-size: 0.9rem; }
 
       .lit-item { font-size: 0.8rem; }
       .lit-title { font-size: 1.1rem; }
@@ -1174,7 +1173,6 @@
     const btnPrev = document.getElementById('btnPrev');
     const btnNext = document.getElementById('btnNext');
 
-    // Список картинок от 1.jpg до 8.jpg в папке assets/карусель
     const carouselImages = [];
     for (let i = 1; i <= 8; i++) {
       carouselImages.push(`assets/карусель/${i}.jpg`);
@@ -1190,14 +1188,12 @@
       return div;
     }
 
-    // Клонируем картинки 3 раза для эффекта бесконечности
     const duplicatedImages = [...carouselImages, ...carouselImages, ...carouselImages];
 
     duplicatedImages.forEach(src => {
       carouselTrack.appendChild(createCarouselItem(src));
     });
 
-    // Скролл по стрелкам
     const scrollAmount = 466; 
 
     btnPrev.addEventListener('click', () => {
@@ -1208,7 +1204,6 @@
       carouselTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     });
 
-    // Drag-and-drop для мышки
     let isDown = false;
     let startX;
     let scrollLeft;
