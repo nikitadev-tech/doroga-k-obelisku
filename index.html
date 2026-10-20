@@ -501,14 +501,13 @@
     }
 
     /* =========================================================== */
-    /* НОВЫЙ БЛОК — Связь поколений                                  */
+    /* НОВЫЙ БЛОК — Поисковая группа                                */
     /* =========================================================== */
     #generations {
       height: 100vh;
       min-height: 100vh;
       height: 100svh;
       min-height: 100svh;
-      /* Подняли контент на 30px за счет уменьшения верхнего отступа */
       padding: calc(var(--header-h) + 1rem - 30px) 5% 1rem;
       box-sizing: border-box;
       justify-content: center;
@@ -624,8 +623,8 @@
       border-left: 6px solid #a02020;
       box-shadow: 0 4px 15px rgba(0,0,0,0.05);
       margin-top: 0;
-      flex: 1; /* Растягивается на всё свободное место */
-      min-height: 0; /* Важно для корректной работы overflow во флекс-контейнере */
+      flex: 1;
+      min-height: 0;
       overflow-y: auto;
     }
 
@@ -650,6 +649,29 @@
       text-align: justify;
       columns: 2;
       column-gap: 2rem;
+    }
+
+    /* Стилизация текста внутри нового блока */
+    .gen-text p {
+      margin-bottom: 0.6rem;
+    }
+    
+    .gen-text strong {
+      color: #a02020;
+      font-weight: 700;
+      display: block;
+      margin-top: 0.5rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .gen-text ul {
+      margin-left: 1.2rem;
+      margin-bottom: 0.6rem;
+      padding-left: 0;
+    }
+
+    .gen-text li {
+      margin-bottom: 0.3rem;
     }
 
     /* =========================================================== */
@@ -824,20 +846,20 @@
       #memory { height: auto; min-height: 100svh; }
       .collage { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(6, 1fr); }
 
-      /* Связь поколений мобилка */
+      /* Поисковая группа мобилка */
       #generations { 
         height: auto;
         min-height: 100svh; 
         padding: calc(var(--header-h) + 1rem) 1rem 2rem; 
       }
-      .gen-title { font-size: 2rem; }
+      .gen-title { font-size: 1.8rem; }
       .carousel-item { width: 280px; height: 200px; }
       .carousel-btn { width: 2.5rem; height: 2.5rem; font-size: 1.2rem; }
       .carousel-btn.prev { left: -0.5rem; }
       .carousel-btn.next { right: -0.5rem; }
       .gen-text-content { padding: 1.5rem; }
       .gen-text { columns: 1; text-align: left; }
-      .gen-badge { font-size: 0.9rem; padding: 0.4rem 1rem; }
+      .gen-badge { font-size: 0.85rem; padding: 0.4rem 1rem; }
 
       #literature { height: auto; min-height: 100svh; }
       .lit-wrap { padding: 1.25rem 1rem 2rem; gap: 0.9rem; overflow-y: visible; }
@@ -863,7 +885,8 @@
       .camp-photo--qr img { max-height: 130px; }
 
       .carousel-item { width: 240px; height: 180px; }
-      .gen-text { font-size: 0.95rem; }
+      .gen-title { font-size: 1.5rem; }
+      .gen-text { font-size: 0.9rem; }
 
       .lit-item { font-size: 0.8rem; }
       .lit-title { font-size: 1.1rem; }
@@ -969,10 +992,10 @@
     </div>
   </section>
 
-  <!-- БЛОК: СВЯЗЬ ПОКОЛЕНИЙ -->
+  <!-- БЛОК: ПОИСКОВАЯ ГРУППА -->
   <section id="generations" class="section">
     <div class="gen-container">
-      <h2 class="gen-title">Связь поколений</h2>
+      <h2 class="gen-title">Поисковая группа "Эхо войны"</h2>
       
       <div class="carousel-wrapper">
         <button class="carousel-btn prev" id="btnPrev" aria-label="Назад">&#10094;</button>
@@ -983,13 +1006,21 @@
       </div>
 
       <div class="gen-text-content">
-        <div class="gen-badge">От Михалыча (без матов)</div>
+        <div class="gen-badge">Поисковая группа "Эхо войны"</div>
         <div class="gen-text">
-          <p>Здесь будет размещён большой текст. Вы можете написать сюда историю о поиске захоронений, о том, как молодое поколение ухаживает за памятниками, очерк о ветеранах или любые другие размышления на тему памяти, патриотизма и связи между поколениями.</p>
-          <br>
-          <p>Текст автоматически разбивается на две колонки на широких экранах для удобства чтения. На мобильных устройствах он будет отображаться в одну колонку.</p>
-          <br>
-          <p>Просто замените этот текст на свой собственный, когда он будет готов.</p>
+          <p>Воспитание молодежи на примере военных и трудовых подвигов народа в годы Великой Отечественной войны всегда рассматривалось как одно из приоритетных направлений воспитательной работы. Огромный воспитательный потенциал заложен непосредственно в поисковой деятельности.</p>
+          
+          <strong>Основная цель деятельности поисковой группы:</strong>
+          <ul>
+            <li>увековечение памяти всех участников ВОВ независимо от звания, масштабов подвига, статуса полученной награды.</li>
+          </ul>
+
+          <strong>Задачи поисковой группы «ЭХО ВОЙНЫ»:</strong>
+          <ul>
+            <li>воспитание патриотизма и гражданственности у учащейся молодежи;</li>
+            <li>развитие общественной активности учащихся, овладение ими практическими навыками поисковой и исследовательской деятельности;</li>
+            <li>привлечение членов поискового отряда к выполнению поисковых работ по выявлению неучтенных захоронений, увековечиванию имен воинов, павших на полях сражений ВОВ.</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1138,7 +1169,7 @@
       }
     }
 
-    /* ---------- Бесконечная карусель Связь поколений ---------- */
+    /* ---------- Бесконечная карусель Поисковая группа ---------- */
     const carouselTrack = document.getElementById('carouselTrack');
     const btnPrev = document.getElementById('btnPrev');
     const btnNext = document.getElementById('btnNext');
@@ -1153,8 +1184,8 @@
       const div = document.createElement('div');
       div.className = 'carousel-item';
       const img = document.createElement('img');
-      img.src = encodeURI(src); // encodeURI для русской папки
-      img.alt = 'Связь поколений';
+      img.src = encodeURI(src); 
+      img.alt = 'Поисковая группа';
       div.appendChild(img);
       return div;
     }
